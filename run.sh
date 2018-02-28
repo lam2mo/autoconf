@@ -29,7 +29,3 @@ touch src/ChangeLog
 # run autoconf
 (cd src && autoreconf --install)
 
-# delete unnecessary files
-rm -r src/autom4te.cache
-rm src/aclocal.m4
-
