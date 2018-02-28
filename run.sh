@@ -15,21 +15,22 @@ int main()
 EOF
 
 # set up configure.ac
-echo "AC_INIT([test], [1.0], [lam2mo@jmu.edu])"     >  src/configure.ac
-echo "AM_INIT_AUTOMAKE([-Wall])"                    >> src/configure.ac
-echo "AC_PROG_CC"                                   >> src/configure.ac
-echo "AC_CONFIG_FILES([Makefile])"                  >> src/configure.ac
-echo "AC_OUTPUT"                                    >> src/configure.ac
+cat << EOF > src/configure.ac
+AC_INIT([test], [1.0], [lam2mo@jmu.edu])
+AM_INIT_AUTOMAKE([-Wall])
+AC_PROG_CC
+AC_CONFIG_FILES([Makefile])
+AC_OUTPUT
+EOF
 
 # set up Makefile.am
-echo "bin_PROGRAMS=test"    >  src/Makefile.am
-echo "test_SOURCES=test.c"  >> src/Makefile.am
+cat << EOF > src/Makefile.am
+bin_PROGRAMS=test
+test_SOURCES=test.c
+EOF
 
 # files that are apparently necessary for automake
-touch src/NEWS
-touch src/README
-touch src/AUTHORS
-touch src/ChangeLog
+touch src/NEWS src/README src/AUTHORS src/ChangeLog
 
 # run minimal autoconf sequence or swap w/ commented-out line to use autoreconf
 (cd src && aclocal && autoconf && automake --add-missing)
